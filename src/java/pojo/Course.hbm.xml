@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 22, 2016 2:09:22 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="pojo.Course" optimistic-lock="version" schema="STUADMIN" table="COURSE">
+    <id name="coursename" type="string">
+      <column length="60" name="COURSENAME"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="courseid" type="string">
+      <column length="60" name="COURSEID"/>
+    </property>
+    <property name="coursetype" type="string">
+      <column length="60" name="COURSETYPE"/>
+    </property>
+  </class>
+</hibernate-mapping>

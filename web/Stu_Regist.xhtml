@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head lang="en">
+        <meta charset="UTF-8"/>
+        <title>Student|Regist</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="renderer" content="webkit"/>
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <h:outputStylesheet library="i" name="favicon.png"/>
+        <h:outputStylesheet library="css" name="amazeui.min.css"/>
+        <style>
+            .header {
+                text-align: center;
+            }
+            .header h1 {
+                font-size: 200%;
+                color: #333;
+                margin-top: 30px;
+            }
+            .header p {
+                font-size: 14px;
+            }
+        </style>
+        <script language="javascript" type="text/javascript">
+            function validateCode() {
+                document.getElementById('getCode').src = "vcode.jsp?" + Math.ceil(Math.random() * 1000);
+            }
+        </script>
+    </h:head>
+
+    <h:body>
+        <header class="am-topbar">
+            <h1 class="am-topbar-brand">
+                <a href="index.jsp"><strong>Student Management</strong> <small>System</small></a>
+            </h1>
+
+            <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+                    data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">Navigation Change</span> <span
+                    class="am-icon-bars"></span></button>
+
+            <div class="am-collapse am-topbar-collapse am-topbar-right" id="doc-topbar-collapse">
+                <ul class="am-nav am-nav-pills am-topbar-nav">
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="adminlogin.xhtml">Manager/Teacher</a></li>
+                    <li class="am-active"><a href="Stu_login.xhtml">Student</a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="header">
+            <div class="am-g">
+                <h1>Student Information Management System</h1>
+            </div>
+            <hr/>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+                <h3>Fresh man</h3>
+                <hr/>
+
+                <h:form class="am-form">
+
+                    <h:outputLabel for="txtID">ID:</h:outputLabel>
+                    <h:inputText id="txtID" value="#{registerbean.stuno}" >
+                        <!--<f:validateLength minimum="12" maximum="12"/>-->
+                        <f:validateRequired/>
+                    </h:inputText>
+                    <br/>
+
+                    <h:outputLabel for="txtPWD">Password:</h:outputLabel>
+                    <h:inputSecret id="txtPWD" value="#{registerbean.stupassword}">
+                        <f:validateRequired/>
+                    </h:inputSecret>
+                    <br/>
+
+                    <h:outputLabel for="txtName">Name:</h:outputLabel>
+                    <h:inputText id="txtNAME" value="#{registerbean.stuname}">
+                        <f:validateLength maximum="10"/>
+                        <f:validateRequired/>
+                    </h:inputText>
+                    <br/>
+
+                    <h:outputLabel for="txtAdd">Address:</h:outputLabel>
+                    <h:inputText id="txtAdd" value="#{registerbean.stuaddress}">
+                        <f:validateRequired/>
+                    </h:inputText>
+                    <br/>
+
+                    <h:outputLabel for="radGENDER">Gender:</h:outputLabel>
+                    <h:selectOneRadio id="radGENDER" value="#{registerbean.stugender}">
+
+                        <f:selectItem id="siM" itemLabel="Male" itemValue="M" />
+                        <f:selectItem  id="siF" itemLabel="Female" itemValue="F"/>    
+                    </h:selectOneRadio>
+                    <br/>
+
+                    <h:outputLabel for="txtIDCARD">Identity Card:</h:outputLabel>
+                    <h:inputText id="txtIDCARD" value="#{registerbean.stuidno}">
+                        <!--<f:validateLength minimum="20" maximum="20"/>-->
+                        <f:validateRequired/>
+                    </h:inputText>
+                    <br/>
+
+                    <div class="am-form-group">
+                        <h:outputLabel for="txtClass">Class:</h:outputLabel>
+                        <h:selectOneMenu value="#{registerbean.classname}" id="txtClass">
+                            <f:selectItem itemValue="#{null}" itemLabel="-- select one --" />
+                            <f:selectItems value="#{registerbean.allclasses}" var="class"
+                                           itemValue="#{class.classname}" itemLabel="#{class.classname}"/>
+                        </h:selectOneMenu>
+                        <span class="am-form-caret"></span>
+                    </div>
+                    <br/>
+
+                    <h:outputLabel for="txtDOB">Date of Birth:</h:outputLabel>
+                    <h:inputText id="txtDOB" value="#{registerbean.studob}">
+                        <f:convertDateTime pattern="yyyy-mm-dd"/>
+                    </h:inputText>
+                    <br/>
+
+                    <h:outputLabel for="txtVCODE">Verify Code:</h:outputLabel>
+                    <h:inputText id="txtVCODE" value="#{loginbean.vcode}"/>
+                    <br/>
+                    <img src="vcode.jsp" id="getCode"/> 
+                    <a style="cursor: pointer" onclick="javasrcipt:validateCode()">Change another</a>  
+                    <br/>
+                    <br/>
+
+                    <div class="am-cf">
+                        <h:commandButton type="submit" value="Regist" class="am-btn am-btn-primary am-btn-sm am-btn-fl" action="#{registerbean.register}"/>
+                        <h:commandButton type="reset" value="Reset" class="am-btn am-btn-primary am-btn-sm am-btn-fl"/>
+                    </div>
+                </h:form>
+                <hr/>
+                <p>©2016 NIIT Crazy Human</p>
+            </div>
+        </div>
+    </h:body>
+</html>
+
+
+

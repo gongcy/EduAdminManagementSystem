@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 22, 2016 2:09:22 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="pojo.Class" optimistic-lock="version" schema="STUADMIN" table="CLASS">
+    <id name="classname" type="string">
+      <column length="60" name="CLASSNAME"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="classgrade" type="java.lang.Integer">
+      <column name="CLASSGRADE"/>
+    </property>
+    <property name="classdate" type="date">
+      <column length="10" name="CLASSDATE"/>
+    </property>
+    <property name="department" type="string">
+      <column length="60" name="DEPARTMENT"/>
+    </property>
+    <property name="major" type="string">
+      <column length="60" name="MAJOR"/>
+    </property>
+  </class>
+</hibernate-mapping>
